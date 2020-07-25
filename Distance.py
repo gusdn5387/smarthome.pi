@@ -18,17 +18,15 @@ GPIO.setup(RIGHT_GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(RIGHT_GPIO_ECHO, GPIO.IN)
 
 def distance() -> Tuple[float, float]:
+    print("LEFT SETUP")
     GPIO.output(LEFT_GPIO_TRIGGER, True)
- 
     time.sleep(0.00001)
     GPIO.output(LEFT_GPIO_TRIGGER, False)
-
     
+    print("RIGHT SETUP")
     GPIO.output(RIGHT_GPIO_TRIGGER, True)
- 
     time.sleep(0.00001)
     GPIO.output(RIGHT_GPIO_TRIGGER, False)
- 
  
     left_start_time = time.time()
     left_stop_time = time.time()
@@ -36,15 +34,18 @@ def distance() -> Tuple[float, float]:
     right_start_time = time.time()
     right_stop_time = time.time()
 
+
+    print("LEFT GPIO WHILE 1")
     while GPIO.input(LEFT_GPIO_ECHO) == 0:
         left_start_time = time.time()
- 
+    print("LEFT GPIO WHILE 2")
     while GPIO.input(LEFT_GPIO_ECHO) == 1:
         left_stop_time = time.time()
 
+    print("RIGHT GPIO WHILE 1")
     while GPIO.input(RIGHT_GPIO_ECHO) == 0:
-        right_start_time = time.time()
- 
+        right_start_time = time.time() 
+    print("RIGHT GPIO WHILE 2")
     while GPIO.input(RIGHT_GPIO_ECHO) == 1:
         right_stop_time = time.time()
  
