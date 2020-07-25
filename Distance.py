@@ -1,6 +1,5 @@
 import RPi.GPIO as GPIO
 import time
-from typing import Tuple
 
 GPIO.setmode(GPIO.BCM)
  
@@ -18,18 +17,18 @@ GPIO.setup(RIGHT_GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(RIGHT_GPIO_ECHO, GPIO.IN)
 
 def get_distance(trigger_pin: int, echo_pin: int, name: str = "sensor") -> float:
-    print(f"{name} start, setup")
+    # print(f"{name} start, setup")
     GPIO.output(trigger_pin, True)
     time.sleep(0.00001)
     GPIO.output(trigger_pin, False)
     start_time = time.time()
     stop_time = time.time()
 
-    print(f"{name} while 1")
+    # print(f"{name} while 1")
     while GPIO.input(echo_pin) == 0:
         start_time = time.time()
 
-    print(f"{name} while 2")
+    # print(f"{name} while 2")
     while GPIO.input(echo_pin) == 1:
         stop_time = time.time()
     
@@ -38,45 +37,6 @@ def get_distance(trigger_pin: int, echo_pin: int, name: str = "sensor") -> float
 
     return distance
 
-# def distance() -> Tuple[float, float]:
-#     print("LEFT SETUP")
-#     GPIO.output(LEFT_GPIO_TRIGGER, True)
-#     time.sleep(0.00001)
-#     GPIO.output(LEFT_GPIO_TRIGGER, False)
-    
-#     print("RIGHT SETUP")
-#     GPIO.output(RIGHT_GPIO_TRIGGER, True)
-#     time.sleep(0.00001)
-#     GPIO.output(RIGHT_GPIO_TRIGGER, False)
- 
-#     left_start_time = time.time()
-#     left_stop_time = time.time()
-
-#     right_start_time = time.time()
-#     right_stop_time = time.time()
-
-#     print("LEFT GPIO WHILE 1")
-#     while GPIO.input(LEFT_GPIO_ECHO) == 0:
-#         left_start_time = time.time()
-#     print("LEFT GPIO WHILE 2")
-#     while GPIO.input(LEFT_GPIO_ECHO) == 1:
-#         left_stop_time = time.time()
-
-#     print("RIGHT GPIO WHILE 1")
-#     while GPIO.input(RIGHT_GPIO_ECHO) == 0:
-#         right_start_time = time.time() 
-#     print("RIGHT GPIO WHILE 2")
-#     while GPIO.input(RIGHT_GPIO_ECHO) == 1:
-#         right_stop_time = time.time()
- 
-#     left_time_elapsed = left_stop_time - left_start_time
-#     left_distance = (left_time_elapsed * 34300) / 2
-
-#     right_time_elapsed = right_stop_time - right_start_time
-#     right_distance = (right_time_elapsed * 34300) / 2
- 
-#     return (left_distance, right_distance)
- 
 if __name__ == '__main__':
     try:
         while True:
