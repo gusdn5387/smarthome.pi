@@ -50,6 +50,7 @@ def hello():
 
 @app.route("/sensors/inner/")
 def wow():
+    inner.setup_gpio()
     return get_distance(inner.gpio_trigger, inner.gpio_echo)
 
 # @app.route("/sensors/outer/")
@@ -65,8 +66,6 @@ def wow():
 
 
 if __name__ == "__main__":
-    inner.setup_gpio()
-    outer.setup_gpio()
-
+    # outer.setup_gpio()
     app.run()
 
