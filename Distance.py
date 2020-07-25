@@ -44,7 +44,7 @@ if __name__ == '__main__':
             right_distance = get_distance(RIGHT_GPIO_TRIGGER, RIGHT_GPIO_ECHO)
             # dist = distance()
             print(f"left = {left_distance:.2f}, right = {right_distance:.2f}")
-            time.sleep(0.1)
+            time.sleep(0.5)
  
     except KeyboardInterrupt:
         print("Program stopped by User")
