@@ -60,7 +60,7 @@ if __name__ == '__main__':
     try:
         while True:
             dist = distance()
-            print(f"left = {dist[0]}, right = {dist[1]}")
+            print(f"left = {dist[0]:.2f}, right = {dist[1]:.2f}")
             time.sleep(1)
  
     except KeyboardInterrupt:
