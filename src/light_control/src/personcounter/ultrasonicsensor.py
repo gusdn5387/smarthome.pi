@@ -3,7 +3,6 @@ import time
 import datetime
 from flask import Flask
 
-
 app = Flask(__name__)
 if app.env == 'development':
     import FakeRPi.GPIO as GPIO
@@ -17,7 +16,7 @@ class Ultrasonicsensor:
     gpio_echo: int
     close_throttle_value: float
 
-    def setup_gpio(self):
+    def __post_init__(self):
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.gpio_trigger, GPIO.OUT)
         GPIO.setup(self.gpio_echo, GPIO.IN)
@@ -56,7 +55,8 @@ class UltrasonicsensorPair:
 @dataclass
 class CloseDetected:
     close_detected = False
-    close_detected_at: datetime.datetime = datetime.datetime.now() - datetime.timedelta(minutes=1)
+    close_detected_at: datetime.datetime = datetime.datetime.now() - \
+        datetime.timedelta(minutes=1)
 
     def reset(self):
         self.close_detected = False
@@ -67,7 +67,8 @@ class CloseDetected:
         close_detected 값을 업데이트함. 
         만약 10초 전 close_detected가 true로 업데이트되었다면 close_detected를 업데이트하지 않음.
         """
-        since_close_detected_updated_to_true = datetime.datetime.now() - self.close_detected_at
+        since_close_detected_updated_to_true = datetime.datetime.now() - \
+            self.close_detected_at
         if since_close_detected_updated_to_true.total_seconds() < 10 and self.close_detected is True:
             return False
         else:
@@ -99,5 +100,3 @@ class CloseDetectedPair:
             return True
         else:
             return False
-
-

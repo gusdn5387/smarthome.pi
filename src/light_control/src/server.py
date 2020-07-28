@@ -1,8 +1,8 @@
 from flask import Flask
-import time
 
-from personcounter.ultrasonicsensor import Ultrasonicsensor
-from personcounter.personcounter import PersonCounter
+from .personcounter.ultrasonicsensor import Ultrasonicsensor
+from .personcounter.personcounter import PersonCounter
+from .lightcontroller.led import Led
 
 app = Flask(__name__)
 
@@ -11,14 +11,32 @@ personcounter = PersonCounter(
     outer = Ultrasonicsensor(gpio_trigger=25, gpio_echo=23, close_throttle_value=8)
 )
 
+led = Led(output=26)
+
 @app.route("/")
 def home():
     return "people counting system"
 
 @app.route("/room/people/count")
 def get_room_person_count():
+    """
+    현재 방에 있는 사람 수를 리턴함
+    """
     return str(personcounter.get_room_person_count())
+
+
+@app.route("/room/light/update")
+def update_light_onoff():
+    """
+    방 안에 있는 사람의 수를 구한 뒤 방의 전등 상태를 업데이트함
+    """
+    if personcounter.get_room_person_count() <= 0:
+        led.off()
+    else:
+        led.on()
+    
+    return 'ok'
+
 
 if __name__ == "__main__":
     app.run()
-
