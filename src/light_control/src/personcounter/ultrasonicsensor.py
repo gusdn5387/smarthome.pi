@@ -3,11 +3,7 @@ import time
 import datetime
 from flask import Flask
 
-app = Flask(__name__)
-if app.env == 'development':
-    import FakeRPi.GPIO as GPIO
-else:
-    import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 
 @dataclass
