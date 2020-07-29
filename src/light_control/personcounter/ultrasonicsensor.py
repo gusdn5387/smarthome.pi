@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 import time
 import datetime
-from flask import Flask
 
 import RPi.GPIO as GPIO
 
@@ -10,7 +9,7 @@ import RPi.GPIO as GPIO
 class Ultrasonicsensor:
     gpio_trigger: int
     gpio_echo: int
-    close_throttle_value: float
+    close_throttle_cm: float
 
     def __post_init__(self):
         GPIO.setmode(GPIO.BCM)
@@ -36,7 +35,7 @@ class Ultrasonicsensor:
         return distance
 
     def is_close_detected(self) -> bool:
-        if self._get_distance() < self.close_throttle_value:
+        if self._get_distance() < self.close_throttle_cm:
             return True
         else:
             return False
@@ -58,7 +57,7 @@ class CloseDetected:
         self.close_detected = False
         self.close_detected_at = datetime.datetime.now() - datetime.timedelta(minutes=1)
 
-    def set_current(self, close_detected: bool) -> bool:
+    def set_close_detected(self, close_detected: bool) -> bool:
         """
         close_detected 값을 업데이트함. 
         만약 10초 전 close_detected가 true로 업데이트되었다면 close_detected를 업데이트하지 않음.

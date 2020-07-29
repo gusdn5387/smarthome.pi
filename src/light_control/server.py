@@ -7,15 +7,15 @@ from .lightcontroller.led import Led
 app = Flask(__name__)
 
 personcounter = PersonCounter(
-    inner = Ultrasonicsensor(gpio_trigger=18, gpio_echo=24, close_throttle_value=8),
-    outer = Ultrasonicsensor(gpio_trigger=25, gpio_echo=23, close_throttle_value=8)
+    inner = Ultrasonicsensor(gpio_trigger=18, gpio_echo=24, close_throttle_cm=8),
+    outer = Ultrasonicsensor(gpio_trigger=25, gpio_echo=23, close_throttle_cm=8)
 )
 
 led = Led(output=26)
 
 @app.route("/")
 def home():
-    return "people counting system"
+    return "People counting & Automated Light Control system"
 
 @app.route("/room/people/count")
 def get_room_person_count():
