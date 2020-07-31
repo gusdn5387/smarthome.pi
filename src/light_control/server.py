@@ -1,8 +1,8 @@
 from flask import Flask
 
-from .personcounter.ultrasonicsensor import Ultrasonicsensor
-from .personcounter.personcounter import PersonCounter
-from .lightcontroller.led import Led
+from personcounter.ultrasonicsensor import Ultrasonicsensor
+from personcounter.personcounter import PersonCounter
+from lightcontroller.led import Led
 
 app = Flask(__name__)
 
