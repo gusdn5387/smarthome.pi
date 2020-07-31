@@ -1,4 +1,4 @@
-from .server import update_light_onoff
+from server import update_light_onoff
 import time
 
 while True:
