@@ -1,7 +1,7 @@
 import requests
 import json
 
-API_DASHBOARD_HOST = '127.0.0.1'
+API_DASHBOARD_HOST = 'http://127.0.0.1'
 API_DASHBOARD_PORT = '8000'
 
 
