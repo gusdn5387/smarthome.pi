@@ -7,10 +7,10 @@ API_DASHBOARD_PORT = '8000'
 
 def add_ledstatus_to_dashboard(is_on:bool):
     requests.post(f'{API_DASHBOARD_HOST}:{API_DASHBOARD_PORT}/lightcontrol/ledstatus/',
-                  data=json.dumps({"is_on": is_on}))
+                  json=json.dumps({"is_on": is_on}))
     return True
 
 def add_roomstatus_to_dashboard(people_count:int):
     requests.post(f'{API_DASHBOARD_HOST}:{API_DASHBOARD_PORT}/lightcontrol/roomstatus/',
-                  data=json.dumps({"people_count": people_count}))
+                  json=json.dumps({"people_count": people_count}))
     return True
