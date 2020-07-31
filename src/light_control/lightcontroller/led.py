@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 import RPi.GPIO as GPIO
 
-from ...common.add_to_dashboard import add_ledstatus_to_dashboard
+from .add_to_dashboard import add_ledstatus_to_dashboard
 
 
 @dataclass
