@@ -28,7 +28,8 @@ class PersonCounter:
             self.person_count = self.person_count - 1
             add_roomstatus_to_dashboard(self.person_count)
             if self.person_count < 0:
-                pass
+                # pass
+                self.person_count = 0
                 # raise ValueError(f"person_count {self.person_count} < 0")
         elif self.closedetected_pair.did_person_enter_room(inner_close_detected) == True:
             self.person_count = self.person_count + 1
