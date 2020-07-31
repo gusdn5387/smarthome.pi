@@ -1,6 +1,6 @@
-from . import server
+from .server import update_light_onoff
 import time
 
 while True:
-    server.update_light_onoff()
+    update_light_onoff()
     time.sleep(0.1)
