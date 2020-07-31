@@ -33,11 +33,11 @@ def update_light_onoff():
     perosn_count = personcounter.get_room_person_count()
     print(perosn_count)
     if perosn_count > 0:
-        print("led off")
-        led.off()
-    else:
         print("led on")
         led.on()
+    else:
+        print("led on")
+        led.off()
     
     return 'ok'
 
