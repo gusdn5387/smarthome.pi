@@ -1,4 +1,4 @@
-from ultrasonicsensor import Ultrasonicsensor, UltrasonicsensorPair, CloseDetected, CloseDetectedPair
+from .ultrasonicsensor import Ultrasonicsensor, UltrasonicsensorPair, CloseDetected, CloseDetectedPair
 from add_to_dashboard import add_roomstatus_to_dashboard
 
 
