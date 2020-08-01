@@ -14,9 +14,12 @@ class Dht11:
         self.temperature = self.dht_device.temperature
     
     def get_temperature(self) -> float:
-        if (datetime.datetime.now() - self.updated_at).total_seconds() > 3:
-            self.updated_at = datetime.datetime.now()
-            self.temperature = self.dht_device.temperature
+        try:
+            if (datetime.datetime.now() - self.updated_at).total_seconds() > 3:
+                self.updated_at = datetime.datetime.now()
+                self.temperature = self.dht_device.temperature
+        except:
+            pass
 
         return self.temperature
     
