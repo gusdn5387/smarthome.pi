@@ -20,7 +20,8 @@ class AutoAirConditioning:
 
     def update_autoaircondition_mode(self):
         temp = self.dth11.get_temperature()
-        # hum = self.dth11.get_humidity()
+
+        print(temp)
 
         if temp >= self.threshold_temp:
             self.autoaircondition_mode = AutoAirConditionMode.COOL
