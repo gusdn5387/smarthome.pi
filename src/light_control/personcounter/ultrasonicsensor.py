@@ -66,9 +66,9 @@ class CloseDetected:
         if since_close_detected_updated_to_true.total_seconds() < 3 or self.close_detected == close_detected:
             return False
         else:
-            print(f"detaction updated: {self.close_detected}")
             self.detected_at = datetime.datetime.now()
             self.close_detected = close_detected
+            print(f"detaction updated: {self.close_detected}")
             return True
 
 
