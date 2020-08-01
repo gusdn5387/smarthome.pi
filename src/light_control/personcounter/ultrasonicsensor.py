@@ -52,25 +52,22 @@ class UltrasonicsensorPair:
 @dataclass
 class CloseDetected:
     close_detected = False
-    close_detected_at: datetime.datetime = datetime.datetime.now() - \
-        datetime.timedelta(minutes=1)
+    detected_at: datetime.datetime = datetime.datetime.now() - datetime.timedelta(minutes=1)
 
     def reset(self):
         self.close_detected = False
-        self.close_detected_at = datetime.datetime.now() - datetime.timedelta(minutes=1)
+        self.detected_at = datetime.datetime.now() - datetime.timedelta(minutes=1)
 
     def set_close_detected(self, close_detected: bool) -> bool:
         """
         close_detected 값을 업데이트함. 
         만약 10초 전 close_detected가 true로 업데이트되었다면 close_detected를 업데이트하지 않음.
         """
-        since_close_detected_updated_to_true = datetime.datetime.now() - \
-            self.close_detected_at
-        if since_close_detected_updated_to_true.total_seconds() < 10 and self.close_detected is True:
+        since_close_detected_updated_to_true = datetime.datetime.now() - self.detected_at
+        if since_close_detected_updated_to_true.total_seconds() < 10 and self.close_detected != close_detected:
             return False
         else:
-            if close_detected == True:
-                self.close_detected_at = datetime.datetime.now()
+            self.detected_at = datetime.datetime.now()
             self.close_detected = close_detected
             return True
 
