@@ -6,7 +6,7 @@ import adafruit_dht
 @dataclass
 class Dht11:
     temperature: float = field(init=False)
-    dht_device = field(init=False)
+    dht_device: adafruit_dht.DHT11 = field(init=False)
     updated_at: datetime.datetime = datetime.datetime.now()
 
     def __post_init__(self):
