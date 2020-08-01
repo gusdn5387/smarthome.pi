@@ -36,7 +36,6 @@ class Ultrasonicsensor:
 
     def is_close_detected(self) -> bool:
         distance = self._get_distance()
-        print(distance)
         if distance < self.close_throttle_cm:
             return True
         else:
