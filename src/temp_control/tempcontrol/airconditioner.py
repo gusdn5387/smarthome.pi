@@ -10,6 +10,7 @@ class Motor:
 
     def __post_init__(self):
         GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.output, GPIO.OUT)
         self.gpio_pwm = GPIO.PWM(self.output, 50)
         self.gpio_pwm.start(0)
         
