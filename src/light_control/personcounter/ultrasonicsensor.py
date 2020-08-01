@@ -51,7 +51,7 @@ class UltrasonicsensorPair:
 @dataclass
 class CloseDetected:
     close_detected = False
-    detected_at: datetime.datetime = datetime.datetime.now() - datetime.timedelta(minutes=1)
+    detected_at: datetime.datetime = datetime.datetime.now()
 
     def reset(self):
         self.close_detected = False
