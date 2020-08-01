@@ -55,7 +55,8 @@ class CloseDetected:
 
     def reset(self):
         self.close_detected = False
-        self.detected_at = datetime.datetime.now() - datetime.timedelta(minutes=1)
+        self.detected_at = datetime.datetime.now()
+        
 
     def set_close_detected(self, close_detected: bool) -> bool:
         """
