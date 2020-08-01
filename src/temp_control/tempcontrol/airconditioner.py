@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 @dataclass
 class Motor:
     output: int
-    gpio_pwm = field(init=False)
+    gpio_pwm: GPIO.PWM = field(init=False)
     mode_cool: bool = True
 
     def __post_init__(self):
