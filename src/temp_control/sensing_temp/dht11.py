@@ -11,6 +11,7 @@ class Dht11:
 
     def __post_init__(self):
         self.dht_device = adafruit_dht.DHT11(board.D17)
+        self.temperature = self.dht_device.temperature
     
     def get_temperature(self) -> float:
         if (datetime.datetime.now() - self.updated_at).total_seconds() > 3:
