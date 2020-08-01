@@ -82,14 +82,14 @@ class CloseDetectedPair:
         self.outer.reset()
 
     def did_person_left_room(self, inner_close_detected) -> bool:
-        if inner_close_detected is True and self.outer.close_detected is True:
+        if inner_close_detected is True and self.inner.close_detected is True:
             self.reset()
             return True
         else:
             return False
 
     def did_person_enter_room(self, outer_close_detected) -> bool:
-        if outer_close_detected is True and self.inner.close_detected is True:
+        if outer_close_detected is True and self.outer.close_detected is True:
             self.reset()
             return True
         else:
