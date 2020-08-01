@@ -61,12 +61,12 @@ class CloseDetected:
     def set_close_detected(self, close_detected: bool) -> bool:
         """
         close_detected 값을 업데이트함. 
-        만약 10초 전 close_detected가 true로 업데이트되었다면 close_detected를 업데이트하지 않음.
         """
         since_close_detected_updated_to_true = datetime.datetime.now() - self.detected_at
-        if since_close_detected_updated_to_true.total_seconds() < 10 or self.close_detected == close_detected:
+        if since_close_detected_updated_to_true.total_seconds() < 3 or self.close_detected == close_detected:
             return False
         else:
+            print(f"detaction updated: {self.close_detected}")
             self.detected_at = datetime.datetime.now()
             self.close_detected = close_detected
             return True
